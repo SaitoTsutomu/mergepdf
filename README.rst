@@ -14,7 +14,7 @@
 
 Requirements
 ------------
-* Python 3.6 later
+* Python 3.7 later
 
 Features
 --------
