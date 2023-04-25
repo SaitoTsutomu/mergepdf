@@ -3,24 +3,20 @@ import pathlib
 
 import PyPDF2
 
-# see pyproject.toml
-__version__ = "0.0.2"
-__author__ = "Saito Tsutomu <tsutomu7@hotmail.co.jp>"
-
 
 def mergepdf(input_dir, output_file, sorted_key):
     """Merge PDF files."""
-    lst = list(map(str, pathlib.Path(input_dir).rglob("*.pdf")))
+    lst = sorted(map(str, pathlib.Path(input_dir).rglob("*.pdf")))
     key = eval(f"lambda s: f'{sorted_key}'") if sorted_key else None
     if key:
         lst = sorted(lst, key=key)
         print(lst)
     try:
-        merger = PyPDF2.PdfFileMerger()
+        merger = PyPDF2.PdfMerger()
         merger.strict = False
         print("Including")
         for file in lst:
-            merger.append(file, import_bookmarks=False)
+            merger.append(file, import_outline=False)
             print(f' {file}{(" as " + key(file)) if key else ""}')
         merger.write(output_file)
     finally:
