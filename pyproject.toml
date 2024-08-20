@@ -12,21 +12,18 @@ homepage = "https://github.com/SaitoTsutomu/mergepdf"
 license = "Apache-2.0"
 name = "mergepdf"
 readme = "README.rst"
-version = "0.1.0"
+version = "0.2.0"
 
 [tool.poetry.scripts]
 mergepdf = "mergepdf:main"
 
 [tool.poetry.dependencies]
 pypdf2 = "^3.0"
-python = "^3.11"
+python = "^3.12"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.9"
-flake8 = "^6.1"
-isort = "^5.12"
-mypy = "^1.5"
-pytest = "^7.4"
+mypy = "^1.11"
+pytest = "^8.3"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
