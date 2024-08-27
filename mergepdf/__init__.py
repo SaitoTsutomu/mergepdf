@@ -1,7 +1,7 @@
 import argparse
 import pathlib
 
-import PyPDF2
+import pypdf
 
 
 def mergepdf(input_dir, output_file, sorted_key):
@@ -12,7 +12,7 @@ def mergepdf(input_dir, output_file, sorted_key):
         lst = sorted(lst, key=key)
         print(lst)
     try:
-        merger = PyPDF2.PdfMerger()
+        merger = pypdf.PdfMerger()
         merger.strict = False
         print("Including")
         for file in lst:

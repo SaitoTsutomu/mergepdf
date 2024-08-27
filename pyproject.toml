@@ -18,7 +18,8 @@ version = "0.2.0"
 mergepdf = "mergepdf:main"
 
 [tool.poetry.dependencies]
-pypdf2 = "^3.0"
+pypdf = "^4.3"
+pypdf2 = "2.1.1"
 python = "^3.12"
 
 [tool.poetry.group.dev.dependencies]
