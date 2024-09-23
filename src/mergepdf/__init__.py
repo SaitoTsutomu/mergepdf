@@ -1,7 +1,12 @@
 import argparse
 import pathlib
+from importlib.metadata import metadata
 
 import pypdf
+
+_package_metadata = metadata(__package__)
+__version__ = _package_metadata["Version"]
+__author__ = _package_metadata.get("Author-email", "")
 
 
 def mergepdf(input_dir, output_file, sorted_key):
