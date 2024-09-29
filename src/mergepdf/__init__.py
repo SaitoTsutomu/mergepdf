@@ -1,7 +1,7 @@
 import argparse
 import pathlib
 from importlib.metadata import metadata
-from logging import INFO, StreamHandler, getLogger
+from logging import INFO, basicConfig, getLogger
 
 import pypdf
 
@@ -9,8 +9,6 @@ _package_metadata = metadata(__package__)
 __version__ = _package_metadata["Version"]
 __author__ = _package_metadata.get("Author-email", "")
 logger = getLogger(__name__)
-logger.addHandler(StreamHandler())
-logger.setLevel(INFO)
 
 
 def mergepdf(input_dir, output_file, sorted_key):
@@ -34,6 +32,7 @@ def mergepdf(input_dir, output_file, sorted_key):
 
 
 def main():
+    basicConfig(level=INFO, format="%(message)s")
     parser = argparse.ArgumentParser(description=mergepdf.__doc__)
     parser.add_argument("-i", "--input-dir", default=".")
     parser.add_argument("-o", "--output-file", default="out.pdf")
