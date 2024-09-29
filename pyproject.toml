@@ -8,14 +8,14 @@ classifiers = [
   "Topic :: Scientific/Engineering",
 ]
 dependencies = [
-  "pypdf>=4.3.1",
+  "pypdf>=5.0.0",
 ]
 description = "`mergepdf` is a package for merge PDF files."
 license = {text = "Apache-2.0"}
 name = "mergepdf"
 readme = "README.md"
 requires-python = ">=3.12"
-version = "0.3.0"
+version = "0.4.0"
 
 [project.urls]
 homepage = "https://github.com/SaitoTsutomu/mergepdf"

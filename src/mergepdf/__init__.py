@@ -1,12 +1,16 @@
 import argparse
 import pathlib
 from importlib.metadata import metadata
+from logging import INFO, StreamHandler, getLogger
 
 import pypdf
 
 _package_metadata = metadata(__package__)
 __version__ = _package_metadata["Version"]
 __author__ = _package_metadata.get("Author-email", "")
+logger = getLogger(__name__)
+logger.addHandler(StreamHandler())
+logger.setLevel(INFO)
 
 
 def mergepdf(input_dir, output_file, sorted_key):
@@ -15,18 +19,18 @@ def mergepdf(input_dir, output_file, sorted_key):
     key = eval(f"lambda s: f'{sorted_key}'") if sorted_key else None
     if key:
         lst = sorted(lst, key=key)
-        print(lst)
+        logger.info(lst)
+    merger = pypdf.PdfWriter()
+    merger.strict = False
     try:
-        merger = pypdf.PdfMerger()
-        merger.strict = False
-        print("Including")
+        logger.info("Including")
         for file in lst:
             merger.append(file, import_outline=False)
-            print(f' {file}{(" as " + key(file)) if key else ""}')
+            logger.info(" %s%s", file, (" as " + key(file)) if key else "")
         merger.write(output_file)
     finally:
         merger.close()
-        print(f"Output {output_file}")
+        logger.info("Output %s", output_file)
 
 
 def main():
