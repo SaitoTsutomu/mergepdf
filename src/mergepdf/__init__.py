@@ -14,7 +14,7 @@ logger = getLogger(__name__)
 def mergepdf(input_dir, output_file, sorted_key):
     """Merge PDF files."""
     lst = sorted(map(str, pathlib.Path(input_dir).rglob("*.pdf")))
-    key = eval(f"lambda s: f'{sorted_key}'") if sorted_key else None
+    key = eval(f"lambda s: f'{sorted_key}'") if sorted_key else None  # noqa: S307
     if key:
         lst = sorted(lst, key=key)
         logger.info(lst)
